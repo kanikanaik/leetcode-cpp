@@ -24,7 +24,7 @@ int maxProfit(vector<int> &prices)
     }
 
     // cout << "MAx: " << max << endl;
-    cout << "Min: " << prices[mini[] << endl;
+    cout << "Min: " << prices[mini[]] << endl;
 
     // cout << "Profit: "<< max - mini << endl;
     return 0;
