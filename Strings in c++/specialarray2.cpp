@@ -17,7 +17,7 @@ int main()
         int to = queries[i][1];
 
         for(int j = from;j <= to;j++){
-            nums[from ]
+            nums[from ];
         }
     }
 }
