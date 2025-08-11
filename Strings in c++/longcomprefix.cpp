@@ -12,24 +12,30 @@ int main()
 
     vector<string> strs = {"flower", "flow", "flight"};
     string common = "";
-    
-    for (int j = 0; j < strs[0].size(); j++)
+    string smallest = "";
+    int mini = 10000;
+
+    for (int i = 0; i < strs.size(); i++)
     {
-        char c = strs[0][j];
-        for (int i = 1; i < strs.size(); i++)
+        if (strs[i].size() < mini)
         {
-            if (j >= strs[i].size() || strs[i][j] != c)
-            {
-                cout << "Common Prefix: " << common << endl;
-                return 0;
-            }
+            mini = strs[i].size();
+            smallest = strs[i];
         }
-        common += c;
     }
 
-    cout << "Common Prefix: " << common << endl;
-
-    // cout << strs[1][0] << endl;
+    // flow strs[i]
+    for (int i = 0; i < smallest.size(); i++)
+    {
+        for (int j = i + 1; j < strs[i].size() - smallest.size(); j++)
+        {
+            if (smallest[i] == strs[i][j])
+            {
+                common += smallest[i];
+            }
+        }
+    }
+    cout << "Common string : " << common << endl;
 }
 
 // flower
