@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ int main()
     vector<int> nums = {1, 1, 1, 2, 2, 3};
     int k = 2;
 
-    vector<int> freq = {};
-
-    for (int i = 0)
+    unordered_set<int, int> count; 
+    
+    // for (int i = 0)
 }
