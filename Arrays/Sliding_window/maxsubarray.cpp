@@ -8,8 +8,9 @@ using namespace std;
 
 int main()
 {
-    vector<int> arr = {100, 200, 300, 400};
-    int k = 2;
+    vector<int> arr = {3,8,2,5,7,6,12};
+    int k = 4;
+    
 
     
 }
