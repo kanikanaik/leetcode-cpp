@@ -30,34 +30,13 @@ Node *buildTree(vector<int> preOrder)
     root->right = buildTree(preOrder);
     return root;
 }
-
-void pre(Node *root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-    cout << root->data << " ";
-    pre(root->left);
-    pre(root->right);
-}
-void in(Node *root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-    in(root->left);
-    cout << root->data << " ";
-    in(root->right);
-}
 void post(Node *root)
 {
     if (root == NULL)
     {
         return;
     }
-    
+
     post(root->left);
     post(root->right);
     cout << root->data << " ";

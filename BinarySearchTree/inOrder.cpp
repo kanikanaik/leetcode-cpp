@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+
 struct Node
 {
     int data;
@@ -19,7 +20,6 @@ static int idx = -1;
 Node *buildTree(vector<int> preOrder)
 {
     idx++;
-
     if (preOrder[idx] == -1)
     {
         return NULL;
@@ -30,22 +30,21 @@ Node *buildTree(vector<int> preOrder)
     return root;
 }
 
-void pre(Node *root)
+void inOrder(Node* root)
 {
-    if (root == NULL)
-    {
+    //left root right
+    if(root == NULL){
         return;
     }
-    cout << root->data << " ";
-    pre(root->left);
-    pre(root->right);
+    inOrder(root->left);
+    cout << root-> data << " ";
+    inOrder(root->right);
 }
-
 int main()
 {
-    vector<int> preOrder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1, 4};
-    Node *root = buildTree(preOrder);
-    pre(root);
 
-    // cout << root->data << endl;
+    vector<int> arr = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+    // vector<int> arr = {1,-1,2,3};
+    Node* root = buildTree(arr);
+    inOrder(root);
 }
