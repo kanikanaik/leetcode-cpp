@@ -1,54 +1,53 @@
 class Solution {
 public:
-    vector<int> findXSum(vector<int>& nums, int k, int x) 
-    {
-        int n = nums.size();
-        vector<int> answer;
-        unordered_map<int, int> freq;
-
-        // Initialize frequency map for the first window
-        for (int j = 0; j < k; j++) {
-            freq[nums[j]]++;
+    int find(map<int, int>& mp, int x){
+  	// Max-heap to store {frequency, number}
+        priority_queue<pair<int, int>> pq;
+        // Build the heap from the frequency map
+        for(auto it: mp){
+            pq.push({it.second, it.first});
         }
-
-        // Calculate x-sum for the first window
-        answer.push_back(calculateXSum(freq, x));
-
-        // Slide the window
-        for (int i = 1; i <= n - k; i++) {
-            // Remove the element going out of the window
-            freq[nums[i - 1]]--;
-            if (freq[nums[i - 1]] == 0) {
-                freq.erase(nums[i - 1]);
-            }
-
-            // Add the new element coming into the window
-            freq[nums[i + k - 1]]++;
-
-            // Calculate x-sum for the current window
-            answer.push_back(calculateXSum(freq, x));
-        }
-        
-        return answer;
-    }
-
-private:
-    int calculateXSum(const unordered_map<int, int>& freq, int x) {
-        // Use a priority queue (max heap) to get the top x elements
-        priority_queue<pair<int, int>> pq; // (frequency, value)
-
-        for (const auto& entry : freq) {
-            pq.push({entry.second, entry.first});
-        }
-
-        int sum = 0;
-        for (int i = 0; i < x && !pq.empty(); i++) {
-            auto top = pq.top();
+        int sum=0;
+  	// Get the top x most frequent elements
+        while(x-- && !pq.empty()){
+            auto it = pq.top();
             pq.pop();
-            sum += top.second * top.first; // sum = value * frequency
+            int freq = it.first;
+  		// Add all occurrences of this number to the sum
+            while(freq--){
+                sum+=it.second;
+            }
         }
-
         return sum;
     }
+    vector<int> findXSum(vector<int>& nums, int k, int x) {
+  	// Frequency map for the current window
+        map<int, int> mp;
+  	// Result vector
+        vector<int> v;
+  	// Sliding window pointers
+        int l=0, r=0;
+        while(r<nums.size()){
+  	    // Expand window: add right element
+            mp[nums[r]]++;
+  		// Shrink window if size > k
+            while(l<r && r-l+1 > k){
+  	        // Remove left element from map
+                mp[nums[l]]--;
+  	        // Erase from map if frequency is 0
+                if(mp[nums[l]] == 0){
+                    mp.erase(nums[l]);
+                }
+  	        // Move left pointer
+                l++;
+            }
+  		// If window is exactly size k, process it
+            if(r-l+1 == k){
+                v.push_back(find(mp, x));
+            }
+  		// Move right pointer
+            r++;
+        }
+        return v;
+    }
 };
-
