@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Input: nums = [1,1,2,2,3,4,2,3], k = 6, x = 2
+
+// Output: [6,10,12]
+
+// Explanation:
+
+// For subarray [1, 1, 2, 2, 3, 4], only elements 1 and 2 will be kept in the resulting array. Hence, answer[0] = 1 + 1 + 2 + 2.
+// For subarray [1, 2, 2, 3, 4, 2], only elements 2 and 4 will be kept in the resulting array. Hence, answer[1] = 2 + 2 + 2 + 4. Note that 4 is kept in the array since it is bigger than 3 and 1 which occur the same number of times.
+// For subarray [2, 2, 3, 4, 2, 3], only elements 2 and 3 are kept in the resulting array. Hence, answer[2] = 2 + 2 + 2 + 3 + 3.
+
+vector<int> findXSum(vector<int> &nums, int k, int x)
+{
+    for (int i = 0; i < nums.size(); i++)
+    {
+        for (int j = i; j < j + k - 1; j++)
+        {
+        }
+    }
+}
+
+int main()
+{
+}
