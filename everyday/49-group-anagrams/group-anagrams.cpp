@@ -1,40 +1,51 @@
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string> &strs)
-{
-    vector<string> words;
-    vector<vector<string>> res;
-    vector<bool> visited(strs.size(), false);
+    // vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    //     vector<string> words;
+    //     vector<vector<string>> res;
+    //     vector<bool> visited(strs.size(), false);
 
-    for (int i = 0; i < strs.size(); i++)
-    {
-        string s;
-        s = strs[i];
-        sort(s.begin(), s.end());
-        // cout << s << " ";
-        words.push_back(s);
-    }
+    //     for (int i = 0; i < strs.size(); i++) {
+    //         string s;
+    //         s = strs[i];
+    //         sort(s.begin(), s.end());
+    //         // cout << s << " ";
+    //         words.push_back(s);
+    //     }
 
-    for (int i = 0; i < strs.size(); i++)
-    {
-        if (visited[i])
-            continue;
+    //     for (int i = 0; i < strs.size(); i++) {
+    //         if (visited[i])
+    //             continue;
 
-        vector<string> temp;
-        temp.push_back(strs[i]);
-        visited[i] = true;
-        for (int j = i +1; j < strs.size(); j++)
-        {
-            if (words[i] == words[j])
-            {
-                temp.push_back(strs[j]);
-                visited[j] = true;
-            }
+    //         vector<string> temp;
+    //         temp.push_back(strs[i]);
+    //         visited[i] = true;
+    //         for (int j = i + 1; j < strs.size(); j++) {
+    //             if (words[i] == words[j]) {
+    //                 temp.push_back(strs[j]);
+    //                 visited[j] = true;
+    //             }
+    //         }
+    //         res.push_back(temp);
+    //     }
+    //     return res;
+    // }
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> res;
+        for (int i = 0; i < strs.size(); i++) {
+            string str = strs[i];
+            sort(str.begin(), str.end());
+            res[str].push_back(strs[i]);
         }
-        res.push_back(temp);
+
+        vector<vector<string>> result;
+
+        for (auto& pair : res) {
+            result.push_back(pair.second);
+        }
+        return result;
     }
-    return res;
-}
 
     //  vector<vector<string>> groupAnagrams(vector<string>& strs) {
     //     vector<string> words;
@@ -45,6 +56,5 @@ public:
     //         words.append(s);
     //     }
 
-        
     // }
 };
