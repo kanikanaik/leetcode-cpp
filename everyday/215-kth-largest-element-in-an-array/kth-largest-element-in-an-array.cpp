@@ -1,13 +1,6 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        // int MAX = nums[0];
-        // for(int i = 0; i < nums.size(); i++){
-        //     MAX = max(MAX,nums[i]);
-        // }
-        // return MAX;
-        // sort(nums.begin(), nums.end());
-        // 1,2,
 
         priority_queue<int> pq;
         for (int i = 0; i < nums.size(); i++) {
@@ -15,13 +8,11 @@ public:
         }
 
         vector<int> temp;
-        priority_queue<int> copy = pq;
-        while (!copy.empty()) {
-            temp.push_back(copy.top());
-            copy.pop();
+        // priority_queue<int> copy = pq;
+        while (!pq.empty()) {
+            temp.push_back(pq.top());
+            pq.pop();
         }
-        // cout << temp;
-        // vector<int> temp(pq.begin(), pq.end());
         return temp[k -1];
     }
 };
