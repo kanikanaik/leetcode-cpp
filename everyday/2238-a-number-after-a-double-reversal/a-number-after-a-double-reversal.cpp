@@ -13,9 +13,6 @@ public:
         int reverse1 = reverseDigits(num);
         int reverse2 = reverseDigits(reverse1);
 
-        if (num == reverse2) {
-            return true;
-        }
-        return false;
+        return num == reverse2;
     }
 };
