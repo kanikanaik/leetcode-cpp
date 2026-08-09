@@ -1,6 +1,6 @@
 class Solution {
 public:
-    string customSortString(string order, string s)
+   string customSortString(string order, string s)
 {
     unordered_map<char, int> seq;
 
@@ -10,13 +10,30 @@ public:
     }
     // cout << s;
     // cout << seq['a'];
-    sort(s.begin(), s.end(), [&](char a, char b)
-         {
-        int priorityA = seq.count(a) ? seq[a] : order.length() + 1;
-        int priorityB = seq.count(b) ? seq[b] : order.length() + 1;
 
-        return priorityA < priorityB; });
-    return s;
+    string result = "";
+    for (int i = 0; i < order.length(); i++)
+    {
+        char c = order[i];
+        if (s.find(c) != string::npos)
+        {
+            for (char x : s)
+            {
+                if (x == c)
+                    result += c;
+            }
+        }
+    }
+
+    for (char c : s)
+    {
+        if (seq.find(c) == seq.end())
+        {
+            result += c;
+        }
+    }
+
+    return result;
 }
 };
 
