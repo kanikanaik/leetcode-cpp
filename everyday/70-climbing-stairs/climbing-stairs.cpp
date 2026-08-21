@@ -1,21 +1,19 @@
 class Solution {
 public:
+    unordered_map<int,int> hash;
     int climbStairs(int n) {
-        // vector<int> dp(n + 1, -1);
-        if(n <= 1) return n;
-        int prev, prev2, curr;
-        // Base cases
-       prev2 = 1;
-        prev = 1;
+        if(n == 1)return 1;
+        if(n == 2) return 2;
+        // if hash found then return
+        // // else add value to hash
+        // hash[1] = 1;
+        // hash[2] = 2;
 
-        // Fill dp array using bottom-up dynamic programming
-        for (int i = 2; i <= n; i++) {
-            curr = prev + prev2;
-            prev2 = prev;
-            prev =curr;
+        if(hash.find(n) != hash.end()){
+            return hash[n];
+        }else{
+            hash[n] = climbStairs(n -1) + climbStairs(n -2);
         }
-
-        // Print the nth Fibonacci number
-       return prev;
+        return hash[n];
     }
 };
