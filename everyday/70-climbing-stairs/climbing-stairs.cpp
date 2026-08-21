@@ -6,8 +6,8 @@ public:
         if(n == 2) return 2;
         // if hash found then return
         // // else add value to hash
-        // hash[1] = 1;
-        // hash[2] = 2;
+        hash[1] = 1;
+        hash[2] = 2;
 
         if(hash.find(n) != hash.end()){
             return hash[n];
