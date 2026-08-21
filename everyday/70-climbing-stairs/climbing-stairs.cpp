@@ -2,8 +2,8 @@ class Solution {
 public:
     unordered_map<int,int> hash;
     int climbStairs(int n) {
-        if(n == 1)return 1;
-        if(n == 2) return 2;
+        // if(n == 1)return 1;
+        // if(n == 2) return 2;
         // if hash found then return
         // // else add value to hash
         hash[1] = 1;
